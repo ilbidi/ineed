@@ -1,12 +1,12 @@
 // ============================================================
-// src/templates/dashboard.rs
+// src/templates/time.rs
 // ============================================================
-pub fn dashboard_page(username: &str) -> String {
+pub fn time_page(current_time: &str) -> String {
     format!(r#"
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Dashboard</title>
+        <title>Current Time</title>
         <style>
             body {{
                 font-family: Arial, sans-serif;
@@ -57,24 +57,34 @@ pub fn dashboard_page(username: &str) -> String {
             .menu a:hover {{
                 background-color: #f0f0f0;
             }}
-            .logout {{
+            .time-display {{
                 background-color: white;
-                color: #007bff;
-                border: none;
-                padding: 0.5rem 1rem;
-                border-radius: 4px;
-                cursor: pointer;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                text-align: center;
             }}
-            .logout:hover {{
-                background-color: #f0f0f0;
+            .time {{
+                font-size: 2rem;
+                color: #007bff;
+                font-weight: bold;
+            }}
+            .back-link {{
+                margin-top: 1rem;
+                display: inline-block;
+                color: #007bff;
+                text-decoration: none;
+            }}
+            .back-link:hover {{
+                text-decoration: underline;
             }}
         </style>
     </head>
     <body>
         <div class="header">
-            <h1>Dashboard</h1>
+            <h1>Dashboard - Current Time</h1>
             <form method="post" action="/logout">
-                <button class="logout" type="submit">Logout</button>
+                <button style="background-color: white; color: #007bff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" type="submit">Logout</button>
             </form>
         </div>
         <div class="container">
@@ -86,11 +96,14 @@ pub fn dashboard_page(username: &str) -> String {
                 </ul>
             </div>
             <div class="content">
-                <h2>Welcome, {}!</h2>
-                <p>You are now logged in to the dashboard.</p>
+                <div class="time-display">
+                    <h2>Current Time</h2>
+                    <div class="time">{}</div>
+                    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+                </div>
             </div>
         </div>
     </body>
     </html>
-    "#, username)
+    "#, current_time)
 }

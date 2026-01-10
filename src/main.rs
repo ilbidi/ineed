@@ -39,7 +39,7 @@ async fn main() -> std::io::Result<()> {
             .route("/register", web::post().to(handlers::auth::register))
             .route("/login", web::post().to(handlers::auth::login))
             .route("/dashboard", web::get().to(handlers::dashboard::dashboard))
-            .route("/dashboard/time", web::get().to(handlers::dashboard::time_page))
+            .route("/dashboard/time", web::get().to(handlers::time::time_page))
             .route("/dashboard/users", web::get().to(handlers::users::users_page))
             .route("/logout", web::post().to(handlers::auth::logout))
     })
